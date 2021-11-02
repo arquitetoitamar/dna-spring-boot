@@ -1,6 +1,8 @@
 # Meli DNA Test Java Skills for back dev
 
+### Qualidty Gate
 
+[![Build](https://github.com/gerenciapedidos/meli-dna/actions/workflows/aws.yml/badge.svg)](https://github.com/gerenciapedidos/meli-dna/actions/workflows/aws.yml) <br>
 How to use Spring Boot, Spring Data, and Neo4j together.
 
 Spring Data Neo4j enables convenient integration of Neo4j in your Spring-based application.
@@ -12,6 +14,7 @@ It provides object-graph mapping (OGM) functionality and other features common t
 ### Swagger Documentation
 https://agile-tor-46740.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config <br>
 To Visualize with DataViz. Access bellow (http): <br>
+
 
 http://agile-tor-46740.herokuapp.com/
 ## The Stack
