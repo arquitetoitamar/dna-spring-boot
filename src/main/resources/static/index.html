@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>DataViz</title>
+    <style type="text/css">
+            #viz {
+                width: 900px;
+                height: 700px;
+            }
+        </style>
+    <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+</head>
+<script>
+        function draw() {
+            var config = {
+                container_id: "viz",
+                server_url: "bolt://54.159.139.0:7687",
+                server_user: "meli",
+                server_password: "secret123",
+                labels: {
+                    "nucleo": {
+                        caption: "dnaType",
+                        size: "pagerank",
+                        community: "community",
+                        title_properties: [
+                            "dnaSequence",
+                            "dnaType"
+                        ],
+                        font: {
+                            size:26,
+                            color:"#000000"
+                        },
+                    },
+                    "codon": {
+                        caption: "basesNitrogenizes",
+                        title_properties: [
+                            "basesNitrogenizes"
+                        ],
+                        font: {
+                            size:26,
+                            color:"#000000"
+                        }
+                    }
+                },
+                relationships: {
+                    "CODON_IN": {
+                        thickness: "weight",
+                        caption: false
+                    }
+                },
+
+                initial_cypher: "MATCH p=()-[r:CODON_IN]->() RETURN p LIMIT 25"
+            }
+
+            var viz = new NeoVis.default(config);
+            viz.render();
+        }
+    </script>
+<body onload="draw()">
+<div id="viz"></div>
+</body>
+</html>

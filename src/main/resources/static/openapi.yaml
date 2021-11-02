@@ -1,0 +1,85 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: API to analytics of DNA Simians and Humans
+  license:
+    identifier: Test Meli
+    name: MIT
+paths:
+  /stats:
+    get:
+      summary: Get Stats
+      operationId: getStats
+      tags:
+        - stats
+      responses:
+        '200':
+          description: Stats of Dnas
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/StatsResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /simian:
+    post:
+      summary: Send data to analysis
+      operationId: create
+      tags:
+        - pets
+      requestBody:
+        required: true
+        content:
+          application/json:     # Media type
+            schema:             # Request body contents
+              $ref: '#/components/schemas/DnaCreate'   # Reference to an object
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DnaCreateResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    StatsResponse:
+      type: object
+      properties: 
+        count_simian_dna:
+          type: integer
+        count_human_dna:
+          type: integer
+        ratio:
+          type: number
+    DnaCreate: 
+      type: object
+      properties:
+        dnas:
+          type: array
+          items: 
+            type: string
+    DnaCreateResponse:
+      properties:
+        is_simian:
+          type: boolean
+          description: Simiog indicator
+       

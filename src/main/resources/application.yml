@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: "Stats Dna"
+  config:
+    import: "optional:file:./dev.properties"
+  data:
+    neo4j:
+      database: ${NEO4J_DATABASE:neo4j}
+  neo4j:
+    uri: ${NEO4J_URI:bolt://54.159.139.0:7687}
+    authentication:
+      username: ${NEO4J_USER:meli}
+      password: ${NEO4J_PASSWORD:secret123}
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: never
+    include-exception: false
+    include-trace: never
+    include-stacktrace: never
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          neo4j:
+            cypher: trace
