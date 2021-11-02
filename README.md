@@ -3,6 +3,9 @@
 ### Qualidty Gate
 
 [![Build](https://github.com/gerenciapedidos/meli-dna/actions/workflows/aws.yml/badge.svg)](https://github.com/gerenciapedidos/meli-dna/actions/workflows/aws.yml) <br>
+<br>
+https://sonarcloud.io/project/overview?id=test_meli-dna
+
 How to use Spring Boot, Spring Data, and Neo4j together.
 
 Spring Data Neo4j enables convenient integration of Neo4j in your Spring-based application.
@@ -38,7 +41,7 @@ NEO4J_PASSWORD: secret123 <br>
 NEO4J_DATABASE: neo4j <br>
 NEO4J_VERSION: 4 <br>
 
-### Queries Exemples
+### Queries Examples
 
 http://54.159.139.0:7474/browser/
 
