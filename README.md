@@ -10,7 +10,10 @@ It provides object-graph mapping (OGM) functionality and other features common t
  * Not has a valid DNA estructure
 
 ### Swagger Documentation
-https://agile-tor-46740.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+https://agile-tor-46740.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config <br>
+To Visualize with DataViz. Access bellow (http): <br>
+
+http://agile-tor-46740.herokuapp.com/
 ## The Stack
 
 These are the components of our Rest Application:
