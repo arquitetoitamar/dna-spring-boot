@@ -8,6 +8,7 @@ import com.mercadolivre.dna.model.Nucleo;
 import com.mercadolivre.dna.repository.StatsRepository;
 import com.mercadolivre.dna.service.impl.CalculatorServiceImpl;
 import com.mercadolivre.dna.service.impl.DnaServiceImpl;
+import java.util.LinkedList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -107,6 +108,21 @@ public class DnaServiceTest {
 
         DnaCreateRequestDto requestDto = DnaCreateRequestDto.builder().build();
         requestDto.setBases(null);
+        Nucleo nucleo = Nucleo.builder()
+                .dnaSequence("HUMAN_SEQUENCE")
+                .tape(HUMAN_SEQUENCE.stream().map(Codon::new)
+                        .collect(Collectors.toList()))
+                .dnaType(DnaType.HUMAN)
+                .build();
+        Mockito.when(coreCalculator.verifyTypeDna(Mockito.any())).thenReturn(false);
+        Mockito.when(statsRepository.save(Mockito.any())).thenReturn(nucleo);
+        DnaCreateResponseDto analysis = dnaService.createAnalysis(requestDto);
+    }
+    @Test(expected = ResponseStatusException.class)
+    public void testValidateEmpty() {
+
+        DnaCreateRequestDto requestDto = DnaCreateRequestDto.builder().build();
+        requestDto.setBases(new LinkedList<>());
         Nucleo nucleo = Nucleo.builder()
                 .dnaSequence("HUMAN_SEQUENCE")
                 .tape(HUMAN_SEQUENCE.stream().map(Codon::new)
