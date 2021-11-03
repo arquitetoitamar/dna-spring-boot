@@ -3,12 +3,8 @@ spring:
     name: "Stats Dna"
   data:
     neo4j:
-      database: ${NEO4J_DATABASE:stats}
+      database: ${NEO4J_DATABASE:neo4j}
   neo4j:
-    #uri: ${NEO4J_URI:neo4j+s://demo.neo4jlabs.com}
-#    authentication:
-#      username: ${NEO4J_USER:}
-#      password: ${NEO4J_PASSWORD:}
 server:
   port: ${PORT:8080}
 

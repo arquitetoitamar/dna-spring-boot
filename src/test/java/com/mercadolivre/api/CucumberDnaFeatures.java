@@ -1,40 +1,42 @@
 package com.mercadolivre.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mercadolivre.dna.dto.DnaCreateRequestDto;
+import io.cucumber.java.en.Given;
+import io.cucumber.messages.internal.com.google.common.base.Splitter;
+import java.util.List;
+import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.springframework.http.HttpStatus;
 @Slf4j
 public class CucumberDnaFeatures {
-//    @ParameterType(name = "dna",value = "(.*)")
-//    public List<String> dna(String dna) {
-//        log.info(dna);
-//        return Arrays.asList(dna.split(",").clone());
-//    }
 
-    @Autowired
-    @Qualifier("feignClient")
-    private CucumberDnaControllerClient client;
+    @Given("^the client send a sequence (\\w+)$")
+    public void the_client_send_a_sequence(String dna) throws JsonProcessingException {
+        log.info(dna);
+        List<String> bases = Splitter
+                .fixedLength(6)
+                .splitToList(dna);
 
-    private Boolean returnedIsSimian = false;
+        String request = new ObjectMapper().writeValueAsString(DnaCreateRequestDto.builder()
+                .bases(bases)
+                .build());
+        IntStream.range(0, 1)
+                .peek(n -> log.info("Posting sequence {}" , dna))
+                .map(ignore -> new HttpClient().post(request))
+                .forEach(statusCode -> assertEquals(statusCode, HttpStatus.OK.value()));
 
-    public CucumberDnaFeatures(CucumberDnaControllerClient client) {
-        this.client = client;
     }
-//    @Given("the client send a sequence {string}")
-//    public void the_client_send_a_sequence(String string) {
-//        log.info(string.toString());
-//        ResponseEntity<DnaCreateResponseDto> response = client.analiseDna(DnaCreateRequestDto.builder()
-//                .bases(Arrays.asList(string.split(",").clone()))
-//                .build());
-//        returnedIsSimian = response.getBody().getIsSimian();
-//    }
 
-//    @When("the api response should be (.*)")
-//    public void the_api_response_should_be(String simian) {
-//        log.info(simian);
-//        assertEquals(Boolean.valueOf(simian), returnedIsSimian);
-//    }
+    @Given("the client send a payload")
+    public void theClientSendAPayload(String payload) {
+        IntStream.range(0, 1)
+                .peek(n -> log.info("Posting sequence {}" , payload))
+                .map(ignore -> new HttpClient().post(payload))
+                .forEach(statusCode -> assertEquals(statusCode, HttpStatus.OK.value()));
+    }
 
 
 //    @When("^I put (\\d+) (\\w+) in the bag$")
