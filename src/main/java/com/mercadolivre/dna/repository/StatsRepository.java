@@ -9,10 +9,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StatsRepository extends Neo4jRepository<Nucleo, String> {
     int countByDnaType(DnaType dnaType);
-    @Query(" MATCH (n:nucleo) "                                     +
-            " WITH count(n.dnaType = 'SIMIAN') as countSimianDna, " +
-            "      count(n.dnaType = 'HUMAN') as countHumanDna "    +
-            " RETURN "                    +
-            "        (toFloat(countSimianDna)/toFloat(countHumanDna)) AS ratio")
+    @Query(" MATCH (n:nucleo)" +
+            "WHERE n.dnaType = 'HUMAN' " +
+            "CALL {" +
+            "  WITH n" +
+            "  MATCH (s:nucleo)" +
+            "  WHERE s.dnaType = 'SIMIAN' " +
+            "  RETURN count(s) AS simians " +
+            "}" +
+            "RETURN tofloat(simians)/toFloat(count(n.dnaType)) as ratio")
     Double countRatio();
 }
