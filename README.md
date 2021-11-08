@@ -2,9 +2,8 @@
 
 ### Qualidty Gate
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dna-spring-boot&metric=alert_status&token=990ee46f8d291c7a2c14dea01c1893e22b7a86ff)](https://sonarcloud.io/summary/new_code?id=dna-spring-boot) <br>
+ <br>
 <br>
-https://sonarcloud.io/project/overview?id=test_meli-dna
 
 How to use Spring Boot, Spring Data, and Neo4j together.
 
