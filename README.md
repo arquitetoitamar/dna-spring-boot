@@ -2,7 +2,7 @@
 
 ### Qualidty Gate
 
-[![Build](https://github.com/gerenciapedidos/meli-dna/actions/workflows/aws.yml/badge.svg)](https://github.com/gerenciapedidos/meli-dna/actions/workflows/aws.yml) <br>
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dna-spring-boot&metric=alert_status&token=990ee46f8d291c7a2c14dea01c1893e22b7a86ff)](https://sonarcloud.io/summary/new_code?id=dna-spring-boot) <br>
 <br>
 https://sonarcloud.io/project/overview?id=test_meli-dna
 
