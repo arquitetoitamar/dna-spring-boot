@@ -1,7 +1,7 @@
 # DNA Test Java Skills for back dev
 
 ### Qualidty Gate
-
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=gerenciapedidos_dna-spring-boot)](https://sonarcloud.io/summary/new_code?id=gerenciapedidos_dna-spring-boot)
  <br>
 <br>
 
