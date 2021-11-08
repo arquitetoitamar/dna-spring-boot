@@ -1,4 +1,4 @@
-# Meli DNA Test Java Skills for back dev
+# DNA Test Java Skills for back dev
 
 ### Qualidty Gate
 
